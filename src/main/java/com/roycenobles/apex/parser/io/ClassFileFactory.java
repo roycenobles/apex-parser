@@ -1,3 +1,14 @@
+/*
+ * Licensed under MIT (https://github.com/roycenobles/apex-parser/blob/master/LICENSE)
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.roycenobles.apex.parser.io;
 
 import java.io.BufferedReader;
@@ -6,6 +17,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Factory for building ClassFile objects from Apex source code.
+ *
+ * @author Royce Nobles
+ */
 public class ClassFileFactory {
 
     public static List<ClassFile> create(String classPath) throws IOException {
