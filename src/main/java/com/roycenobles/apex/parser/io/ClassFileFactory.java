@@ -11,9 +11,7 @@
  */
 package com.roycenobles.apex.parser.io;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -48,15 +46,17 @@ public class ClassFileFactory {
                 fileMap.put(name, cf);
             }
 
+            SourceReader reader = new SourceReader();
+
             if (extension.equals(CLASS_EXTENSION)) {
                 // gather information from source file
                 cf.name = name;
                 cf.extension = extension;
-                cf.source = readFile(file.getPath());
+                cf.source = reader.read(file.getPath());
             }
             else if (extension.equals(META_EXTENSION)) {
                 // gather information from metadata file
-                cf.metadata = readFile(file.getPath());
+                cf.metadata = reader.read(file.getPath());
 
                 int start = cf.metadata.indexOf(API_VERSION_START);
                 int end = cf.metadata.indexOf(API_VERSION_END);
@@ -71,28 +71,7 @@ public class ClassFileFactory {
         return new ArrayList<ClassFile>(fileMap.values());
     }
 
-    private static String readFile(String path) throws IOException {
-
-        BufferedReader reader = new BufferedReader(new FileReader(path));
-        StringBuilder stringBuilder = new StringBuilder();
-
-        try {
-            String line;
-
-            while((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-                stringBuilder.append(LINE_SEPARATOR);
-            }
-
-            return stringBuilder.toString();
-        }
-        finally {
-            reader.close();
-        }
-    }
-
     private static final String
-        LINE_SEPARATOR = System.getProperty("line.separator"),
         API_VERSION_START = "<apiVersion>",
         API_VERSION_END = "</apiVersion>",
         CLASS_EXTENSION = "cls",
