@@ -12,47 +12,40 @@ public class ClassFileFactory {
 
         Map<String,ClassFile> fileMap = new HashMap<String, ClassFile>();
 
-        File classDirectory = new File(classPath);
+        File cd = new File(classPath);
 
-        if (!classDirectory.isDirectory()) {
-            // todo: throw exception?
-            return null;
-        }
+        if (!cd.isDirectory()) throw new IOException("Parameter: [" + classPath + "] is not a directory.");
 
-        for (File file : classDirectory.listFiles()) {
-
-            // todo: factor this out into constituent parts
+        for (File file : cd.listFiles()) { // iterate over all files in directory
 
             String[] parts = file.getName().split("\\.");
 
-            if (parts.length < 2) continue;
+            if (parts.length < 2) continue; // invalid file name
 
             String name = parts[0];
             String extension = (parts.length == 2) ? parts[1] : parts[1] + "." + parts[2];
 
             ClassFile cf = fileMap.get(name);
 
-            if (cf == null) {
+            if (cf == null) { // create an entry in the file map
                 cf = new ClassFile();
                 fileMap.put(name, cf);
             }
 
-           // System.out.println("name: " + name + " extension: " + extension);
-
-            if (extension.equals("cls")) {
-                // set everything else
+            if (extension.equals(CLASS_EXTENSION)) {
+                // gather information from source file
                 cf.name = name;
                 cf.extension = extension;
                 cf.text = readFile(file.getPath());
             }
-            else if (extension.equals("cls-meta.xml")) {
-                // set api version
+            else if (extension.equals(META_EXTENSION)) {
+                // gather information from metadata file
                 cf.meta = readFile(file.getPath());
 
-                int start = cf.meta.indexOf("<apiVersion>");
-                int end = cf.meta.indexOf("</apiVersion>");
+                int start = cf.meta.indexOf(API_VERSION_START);
+                int end = cf.meta.indexOf(API_VERSION_END);
 
-                if (start < end) {
+                if (start < end) { // located api version in meta xml
                     start += 12;
                     cf.apiVersion = cf.meta.substring(start, end);
                 }
@@ -63,19 +56,29 @@ public class ClassFileFactory {
     }
 
     private static String readFile(String path) throws IOException {
+
         BufferedReader reader = new BufferedReader(new FileReader(path));
-        String line = null;
         StringBuilder stringBuilder = new StringBuilder();
-        String ls = System.getProperty("line.separator");
+
         try {
+            String line;
+
             while((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
-                stringBuilder.append(ls);
+                stringBuilder.append(LINE_SEPARATOR);
             }
+
             return stringBuilder.toString();
-        } finally {
+        }
+        finally {
             reader.close();
         }
     }
 
+    private static final String
+        LINE_SEPARATOR = System.getProperty("line.separator"),
+        API_VERSION_START = "<apiVersion>",
+        API_VERSION_END = "</apiVersion>",
+        CLASS_EXTENSION = "cls",
+        META_EXTENSION = "cls-meta.xml";
 }
