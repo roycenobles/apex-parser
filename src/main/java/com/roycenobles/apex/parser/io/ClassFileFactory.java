@@ -36,18 +36,18 @@ public class ClassFileFactory {
                 // gather information from source file
                 cf.name = name;
                 cf.extension = extension;
-                cf.text = readFile(file.getPath());
+                cf.source = readFile(file.getPath());
             }
             else if (extension.equals(META_EXTENSION)) {
                 // gather information from metadata file
-                cf.meta = readFile(file.getPath());
+                cf.metadata = readFile(file.getPath());
 
-                int start = cf.meta.indexOf(API_VERSION_START);
-                int end = cf.meta.indexOf(API_VERSION_END);
+                int start = cf.metadata.indexOf(API_VERSION_START);
+                int end = cf.metadata.indexOf(API_VERSION_END);
 
-                if (start < end) { // located api version in meta xml
+                if (start < end) { // located api version in metadata xml
                     start += 12;
-                    cf.apiVersion = cf.meta.substring(start, end);
+                    cf.apiVersion = cf.metadata.substring(start, end);
                 }
             }
         }
@@ -80,5 +80,5 @@ public class ClassFileFactory {
         API_VERSION_START = "<apiVersion>",
         API_VERSION_END = "</apiVersion>",
         CLASS_EXTENSION = "cls",
-        META_EXTENSION = "cls-meta.xml";
+        META_EXTENSION = "cls-metadata.xml";
 }

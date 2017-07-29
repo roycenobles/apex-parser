@@ -12,7 +12,7 @@
 package com.roycenobles.apex.parser.io;
 
 /**
- * Represents an Apex Class with source text and metadata.
+ * Represents an Apex Class with source source and metadata.
  *
  * @author Royce Nobles
  */
@@ -21,26 +21,51 @@ public class ClassFile {
     String name;
     String extension;
     String apiVersion;
-    String text;
-    String meta;
+    String source;
+    String metadata;
 
+    /**
+     * Gets the API Version of the ClassFile.
+     *
+     * @return the API Version
+     */
     public String getApiVersion() {
         return this.apiVersion;
     }
 
+    /**
+     * Gets the ClassFile extension.
+     *
+     * @return the extension
+     */
     public String getExtension() {
         return this.extension;
     }
 
-    public String getMeta() {
-        return this.meta;
+    /**
+     * Gets the ClassFile Metadata.
+     *
+     * @return the Metadata
+     */
+    public String getMetadata() {
+        return this.metadata;
     }
 
+    /**
+     * Gets the name of the Apex ClassFile.
+     *
+     * @return the name
+     */
     public String getName() {
         return this.name;
     }
 
-    public String getText() {
-        return this.text;
+    /**
+     * Gets the Apex ClassFile source code.
+     *
+     * @return the source code
+     */
+    public String getSource() {
+        return this.source;
     }
 }
