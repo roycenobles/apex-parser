@@ -47,11 +47,7 @@ public class ClassFileFactory {
             if (parts.length < 2) continue; // invalid file name
 
             String name = parts[0];
-
-            String extension = (parts.length == 2)
-                ? parts[1]
-                : String.format("%s.%s", parts[1], parts[2]);
-
+            String extension = (parts.length == 2) ? parts[1] : String.format("%s.%s", parts[1], parts[2]);
             ClassFile cf = fileMap.get(name);
 
             if (cf == null) { // create an entry in the file map
