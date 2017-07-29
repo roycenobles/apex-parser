@@ -22,6 +22,13 @@ import java.io.IOException;
  */
 public class SourceReader {
 
+    /**
+     * Reads source code from the specified File.
+     *
+     * @param filePath the path to the File to be read
+     * @return the source code
+     * @throws IOException
+     */
     public String read(String filePath) throws IOException {
 
         BufferedReader reader = new BufferedReader(new FileReader(filePath));

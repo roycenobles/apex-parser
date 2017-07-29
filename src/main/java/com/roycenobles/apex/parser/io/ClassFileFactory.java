@@ -22,6 +22,13 @@ import java.util.*;
  */
 public class ClassFileFactory {
 
+    /**
+     * Creates a List of ClassFile objects by reading from the SalesForce Classes directory.
+     *
+     * @param classPath Path to the Classes directory
+     * @return the List of ClassFile objects
+     * @throws IOException
+     */
     public static List<ClassFile> create(String classPath) throws IOException {
 
         Map<String,ClassFile> fileMap = new HashMap<String, ClassFile>();
