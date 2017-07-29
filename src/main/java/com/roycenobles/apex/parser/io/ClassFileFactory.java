@@ -35,7 +35,10 @@ public class ClassFileFactory {
 
         File cd = new File(classPath);
 
-        if (!cd.isDirectory()) throw new IOException("Parameter: [" + classPath + "] is not a directory.");
+        if (!cd.isDirectory())
+            throw new IOException(String.format("Parameter (%s) is not a directory", classPath));
+
+        SourceReader reader = new SourceReader();
 
         for (File file : cd.listFiles()) { // iterate over all files in directory
 
@@ -44,7 +47,10 @@ public class ClassFileFactory {
             if (parts.length < 2) continue; // invalid file name
 
             String name = parts[0];
-            String extension = (parts.length == 2) ? parts[1] : parts[1] + "." + parts[2];
+
+            String extension = (parts.length == 2)
+                ? parts[1]
+                : String.format("%s.%s", parts[1], parts[2]);
 
             ClassFile cf = fileMap.get(name);
 
@@ -52,8 +58,6 @@ public class ClassFileFactory {
                 cf = new ClassFile();
                 fileMap.put(name, cf);
             }
-
-            SourceReader reader = new SourceReader();
 
             if (extension.equals(CLASS_EXTENSION)) {
                 // gather information from source file
@@ -68,8 +72,8 @@ public class ClassFileFactory {
                 int start = cf.metadata.indexOf(API_VERSION_START);
                 int end = cf.metadata.indexOf(API_VERSION_END);
 
-                if (start < end) { // located api version in metadata xml
-                    start += 12;
+                if (start < end) { // parse api version from metadata xml
+                    start += API_VERSION_START.length();
                     cf.apiVersion = cf.metadata.substring(start, end);
                 }
             }
@@ -82,5 +86,5 @@ public class ClassFileFactory {
         API_VERSION_START = "<apiVersion>",
         API_VERSION_END = "</apiVersion>",
         CLASS_EXTENSION = "cls",
-        META_EXTENSION = "cls-metadata.xml";
+        META_EXTENSION = "cls-meta.xml";
 }
