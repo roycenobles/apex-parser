@@ -11,7 +11,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         String dir = "/Users/royce/Projects/core/src/classes";
+
         List<ClassFile> classFiles = ClassFileFactory.create(dir);
+
+        System.out.println("Parsed " + classFiles.size() + " Apex Classes:");
 
         for (ClassFile cf : classFiles) {
             System.out.println(cf.getName());
