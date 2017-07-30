@@ -1,4 +1,4 @@
-package com.roycenobles.apex.parser.syntax;
+package com.roycenobles.apex.parser.ast.syntax;
 
 public enum AccessSpecifier {
     GLOBAL("global"),
