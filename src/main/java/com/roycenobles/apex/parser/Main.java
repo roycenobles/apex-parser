@@ -1,5 +1,7 @@
 package com.roycenobles.apex.parser;
 
+import com.roycenobles.apex.parser.ast.ClassNode;
+import com.roycenobles.apex.parser.ast.visitors.PrintVisitor;
 import com.roycenobles.apex.parser.io.ClassFile;
 import com.roycenobles.apex.parser.io.ClassFileFactory;
 
@@ -14,13 +16,9 @@ public class Main {
 
         List<ClassFile> classFiles = ClassFileFactory.create(dir);
 
-        System.out.println("Parsed " + classFiles.size() + " Apex Classes:");
-
         for (ClassFile cf : classFiles) {
-            System.out.println(cf.getName());
-            System.out.println(" - api: " + cf.getApiVersion());
-            System.out.println(" - ext: " + cf.getExtension());
-            System.out.println();
+            ClassNode node = new ClassNode(cf);
+            node.visit(new PrintVisitor());
         }
     }
 }

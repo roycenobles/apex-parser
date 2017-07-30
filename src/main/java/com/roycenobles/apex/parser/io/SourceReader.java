@@ -20,7 +20,7 @@ import java.io.IOException;
  *
  * @author Royce Nobles
  */
-public class SourceReader {
+class SourceReader {
 
     /**
      * Reads source code from the specified File.
@@ -29,7 +29,7 @@ public class SourceReader {
      * @return the source code
      * @throws IOException
      */
-    public String read(String filePath) throws IOException {
+    String read(String filePath) throws IOException {
 
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         StringBuilder stringBuilder = new StringBuilder();
