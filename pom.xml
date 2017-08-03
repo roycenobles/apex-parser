@@ -7,6 +7,13 @@
     <groupId>com.roycenobles</groupId>
     <artifactId>apex-parser</artifactId>
     <version>1.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
