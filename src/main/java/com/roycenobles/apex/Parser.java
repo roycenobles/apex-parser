@@ -17,6 +17,8 @@ public class Parser {
 
         String dir = "/home/royce/Downloads/classes";
 
+        System.out.println("Reading classes");
+
         List<ClassFile> classFiles = ClassFileFactory.create(dir);
 
         for (ClassFile cf : classFiles) {
@@ -24,6 +26,7 @@ public class Parser {
             CharStream cs = CharStreams.fromString(cf.getSource());
 
             ApexLexer lexer = new ApexLexer(cs);
+
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             ApexParser parser = new ApexParser(tokens);
             ApexParser.CompilationUnitContext tree = parser.compilationUnit();
@@ -37,8 +40,19 @@ public class Parser {
     static class ApexWalker extends ApexBaseListener {
 
         @Override
+        public void enterClassOrInterfaceModifier(ApexParser.ClassOrInterfaceModifierContext ctx) {
+            //System.out.println(ctx.APEX_WITH_SHARING());
+            //System.out.println(ctx.APEX_WITHOUT_SHARING());
+        }
+
+        @Override
         public void enterClassDeclaration(ApexParser.ClassDeclarationContext ctx) {
             System.out.println("Class: " + ctx.Identifier().getText());
+        }
+
+        @Override
+        public void enterClassBodyDeclaration(ApexParser.ClassBodyDeclarationContext ctx) {
+
         }
 
         @Override
@@ -47,6 +61,11 @@ public class Parser {
                     "Method: " + ctx.Identifier().getText() +
                             ", type: " + ctx.type().getText() +
                             ", params: " + ctx.formalParameters().formalParameterList());
+        }
+
+        @Override
+        public void enterClassOrInterfaceType(ApexParser.ClassOrInterfaceTypeContext ctx) {
+            super.enterClassOrInterfaceType(ctx);
         }
 
         @Override

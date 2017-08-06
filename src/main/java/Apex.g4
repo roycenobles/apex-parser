@@ -30,15 +30,8 @@
  *  An Apexcode grammar derived from Java 1.7 grammar for ANTLR v4.
  *  Uses ANTLR v4's left-recursive expression notation.
  *
- *  @source: https://github.com/antlr/grammars-v4
- *
  *  @maintainer: Andrey Gavrikov
- *
- *  You can test with
- *
- *  $ antlr4 Apexcode.g4
- *  $ javac *.java
- *  $ grun Apexcode compilationUnit *.cls
+ *  @source: https://github.com/antlr/grammars-v4
  */
 grammar Apex;
 
