@@ -1,10 +1,12 @@
 package com.roycenobles.apex;
 
+import com.roycenobles.apex.grammar.ApexBaseListener;
 import com.roycenobles.apex.grammar.ApexLexer;
 import com.roycenobles.apex.grammar.ApexParser;
 import com.roycenobles.apex.io.ClassFile;
 import com.roycenobles.apex.io.ClassFileFactory;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +15,7 @@ public class Parser {
 
     public static void main(String[] args) throws IOException {
 
-        String dir = "/Users/royce/Projects/core/src/classes";
+        String dir = "/home/royce/Downloads/classes";
 
         List<ClassFile> classFiles = ClassFileFactory.create(dir);
 
@@ -26,9 +28,30 @@ public class Parser {
             ApexParser parser = new ApexParser(tokens);
             ApexParser.CompilationUnitContext tree = parser.compilationUnit();
 
+            ParseTreeWalker walker = new ParseTreeWalker();
 
-            // ClassNode node = new ClassNode(cf);
-            // node.visit(new PrintVisitor());
+            walker.walk(new ApexWalker(), tree);
         }
     }
+
+    static class ApexWalker extends ApexBaseListener {
+
+        @Override
+        public void enterClassDeclaration(ApexParser.ClassDeclarationContext ctx) {
+            System.out.println("Class: " + ctx.Identifier().getText());
+        }
+
+        @Override
+        public void enterMethodDeclaration(ApexParser.MethodDeclarationContext ctx) {
+            System.out.println(
+                    "Method: " + ctx.Identifier().getText() +
+                            ", type: " + ctx.type().getText() +
+                            ", params: " + ctx.formalParameters().formalParameterList());
+        }
+
+        @Override
+        public void enterMethodBody(ApexParser.MethodBodyContext ctx) {
+        }
+    }
+
 }
