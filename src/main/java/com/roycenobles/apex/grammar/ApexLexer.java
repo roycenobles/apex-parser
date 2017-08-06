@@ -1,5 +1,5 @@
 // Generated from /home/royce/Idea/apex-parser/src/main/java/Apex.g4 by ANTLR 4.7
-package com.roycenobles.apex.parser.grammar;
+package com.roycenobles.apex.grammar;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
