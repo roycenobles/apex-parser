@@ -1,5 +1,8 @@
 package com.roycenobles.apex.parser.ast.syntax;
 
+/**
+ * Represents the different accessibility specifiers in Apex.
+ */
 public enum AccessSpecifier {
     GLOBAL("global"),
     PUBLIC("public"),
