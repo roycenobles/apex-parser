@@ -9,7 +9,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.roycenobles.apex.parser.io;
+package com.roycenobles.apex.io;
 
 /**
  * Represents an Apex Class with source source and metadata.

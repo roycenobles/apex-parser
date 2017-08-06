@@ -1,7 +1,7 @@
 package com.roycenobles.apex.parser.ast;
 
 import com.roycenobles.apex.parser.ast.visitors.IVisitor;
-import com.roycenobles.apex.parser.io.ClassFile;
+import com.roycenobles.apex.io.ClassFile;
 import java.util.ArrayList;
 import java.util.List;
 
