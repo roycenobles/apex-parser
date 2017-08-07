@@ -15,7 +15,7 @@ public class Parser {
 
     public static void main(String[] args) throws IOException {
 
-        String dir = "/home/royce/Downloads/classes";
+        String dir = "/Users/royce/Idea/core/src/classes";
 
         System.out.println("Reading classes");
 
@@ -57,10 +57,9 @@ public class Parser {
 
         @Override
         public void enterMethodDeclaration(ApexParser.MethodDeclarationContext ctx) {
-            System.out.println(
-                    "Method: " + ctx.Identifier().getText() +
-                            ", type: " + ctx.type().getText() +
-                            ", params: " + ctx.formalParameters().formalParameterList());
+//            System.out.println(
+//                    "Method: " + ctx.Identifier().getText() +
+//                            ", type: " + ctx.type().getText());
         }
 
         @Override

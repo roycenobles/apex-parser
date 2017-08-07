@@ -1,4 +1,4 @@
-// Generated from /home/royce/Idea/apex-parser/src/main/java/Apex.g4 by ANTLR 4.7
+// Generated from /Users/royce/Idea/apex-parser/src/main/java/Apex.g4 by ANTLR 4.7
 package com.roycenobles.apex.grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
