@@ -9,7 +9,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.roycenobles.apex.io;
+package com.ncino.apex.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

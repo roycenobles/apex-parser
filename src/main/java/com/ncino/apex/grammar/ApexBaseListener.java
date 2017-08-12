@@ -1,5 +1,5 @@
-// Generated from /Users/royce/Idea/apex-parser/src/main/java/Apex.g4 by ANTLR 4.7
-package com.roycenobles.apex.grammar;
+// Generated from /Users/royce/Idea/src/main/antlr/Apex.g4 by ANTLR 4.7
+package com.ncino.apex.grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
